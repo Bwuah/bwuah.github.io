@@ -1,6 +1,6 @@
 ## Stocha
 
-| | Z | z |
+|Ω| Z | z |
 |:---:|:---:|:---:|
 |R|n-faches Produktmaß|GeoV.|
 |r|Multinomial|Hyperg.V.|
