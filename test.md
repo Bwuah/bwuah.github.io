@@ -2,7 +2,7 @@
   embed 
   {
     max-width: 90%;
-    max-height: 60%;-
+    max-height: 60%;
   }
 </style>
 
