@@ -1,9 +1,9 @@
 ## Stocha
 
-|Ω| Z | z |
+|Ω| R | r |
 |:---:|:---:|:---:|
-|R|n-faches Produktmaß|GeoV.|
-|r|Multinomial|Hyperg.V.|
+|Z|n-faches Produktmaß|Multinomial|
+|z|GeoV.|Hyperg.V.|
 
 ![img](file2.png)
 
