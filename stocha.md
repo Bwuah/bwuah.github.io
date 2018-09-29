@@ -5,5 +5,5 @@
 |R|n-faches Produktmaß|GeoV.|
 |r|Multinomial|Hyperg.V.|
 
-![img](file1.png)
+![img](file2.png)
 
