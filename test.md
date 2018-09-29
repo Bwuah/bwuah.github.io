@@ -8,7 +8,7 @@
 
 ## teest
 
-<embed src="https://bwuah.github.io/Stochastik_Rev.pdf" type='application/pdf'>
+<embed src="https://bwuah.github.io/Stochastik_Rev.pdf" style="width:100%" type='application/pdf'>
 
 ## teeest
 
