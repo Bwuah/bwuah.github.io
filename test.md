@@ -1,6 +1,14 @@
+<style>
+  embed 
+  {
+    max-width: 90%;
+    max-height: 60%;-
+  }
+</style>
+
 ## teest
 
-<embed src="https://bwuah.github.io/Stochastik_Rev.pdf" width="500" height="375" type='application/pdf'>
+<embed src="https://bwuah.github.io/Stochastik_Rev.pdf" type='application/pdf'>
 
 ## teeest
 
