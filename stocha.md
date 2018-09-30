@@ -17,3 +17,5 @@
 <a href="https://bwuah.github.io/Stochastik_A6_Happe_Hein.pdf">Blatt 6</a><br>
 <a href="https://bwuah.github.io/Stocha_7_Happe_Hein.pdf">Blatt 7</a><br>
 <a href="https://bwuah.github.io/Stocha_8_Happe_Hein.pdf">Blatt 8</a><br>
+<br>
+<a href="https://bwuah.github.io/Stocha_Folien.pdf"> Folien </a><br>
