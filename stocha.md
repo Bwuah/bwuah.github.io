@@ -11,7 +11,7 @@
 
 <!--[img](file3.PNG)-->
 
-<a href="https://bwuah.github.io/Stochastik_A4_Happe_Hein.pdf">Blatt 4</a>
-<a href="https://bwuah.github.io/Stochastik_A6_Happe_Hein.pdf">Blatt 6</a>
-<a href="https://bwuah.github.io/Stocha_7_Happe_Hein.pdf">Blatt 7</a>
-<a href="https://bwuah.github.io/Stocha_8_Happe_Hein.pdf">Blatt 8</a>
+<a href="https://bwuah.github.io/Stochastik_A4_Happe_Hein.pdf">Blatt 4</a><br>
+<a href="https://bwuah.github.io/Stochastik_A6_Happe_Hein.pdf">Blatt 6</a><br>
+<a href="https://bwuah.github.io/Stocha_7_Happe_Hein.pdf">Blatt 7</a><br>
+<a href="https://bwuah.github.io/Stocha_8_Happe_Hein.pdf">Blatt 8</a><br>
