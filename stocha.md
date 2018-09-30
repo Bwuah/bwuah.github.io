@@ -19,3 +19,5 @@
 <a href="https://bwuah.github.io/Stocha_8_Happe_Hein.pdf">Blatt 8</a><br>
 <br>
 <a href="https://bwuah.github.io/Stocha_Folien.pdf"> Folien </a><br>
+<br>
+<a href="https://bwuah.github.io/Stocha_Revision.pdf">Stocha Revision</a><br>
