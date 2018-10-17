@@ -3,7 +3,7 @@
 ###   CHANGE   ###
 LIBS :=
 NAME := exe
-DIR := #build/
+DIR := build/
 CC  := gcc
 CFLAGS := -g -W
 ### END CHANGE ###
@@ -28,11 +28,14 @@ clean:
 run:
 	$(shell make dir_exists)
 	@echo $(shell make $(NAME))
-	@echo $(shell ./$(DIR)$(NAME))
+	./$(DIR)$(NAME)
 
 v:
 	@echo $(shell make $(NAME))
 	@echo $(shell valgrind ./$(DIR)$(NAME))
+
+compile:
+	@echo $(shell make $(NAME))
 
 $(DIR):
 	mkdir -p $@
