@@ -1,7 +1,7 @@
 # Index
-- [Go](https://github.com/lennihein/showcase/blob/master/compendium.md#go-compendium)
-- [C](https://github.com/lennihein/showcase/blob/master/compendium.md#c-compendium)
-- [x86](https://github.com/lennihein/showcase/blob/master/compendium.md#assembly-x86-intel)
+- [Go](https://bwuah.github.io/compendium#go-compendium)
+- [C](https://bwuah.github.io/compendium#c-compendium)
+- [x86](https://bwuah.github.io/compendium#assembly-x86-intel)
 
 # Go Compendium
 
