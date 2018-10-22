@@ -1,1 +1,16 @@
 theme: jekyll-theme-cayman
+
+footer-links: 
+  dribbble: 
+  email: github@bwuah.me
+  facebook: 
+  flickr: 
+  github: lennihein
+  instagram: 
+  linkedin: 
+  pinterest: 
+  rss: # just type anything here for a working RSS icon, make sure you set the "url" above! 
+  twitter: bwuaaah
+  stackoverflow: users/8114293/lennihein
+  youtube: channel/UCB84qj3UWeBzh3H29qNXkoA
+  googleplus: # anything in your profile username that comes after plus.google.com/ 
