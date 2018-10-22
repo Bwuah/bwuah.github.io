@@ -6,6 +6,9 @@ name: Bwuah.me
 # Short bio or description (displayed in the header) 
 description: Bwuaaaaah!!
 
+# URL of your avatar or profile pic (you could use your GitHub profile pic) 
+avatar: https://avatars2.githubusercontent.com/u/43686459?s=400&v=4
+
 footer-links: 
   dribbble: 
   email: github@bwuah.me
@@ -20,3 +23,11 @@ footer-links:
   stackoverflow: users/8114293/lennihein
   youtube: channel/UCB84qj3UWeBzh3H29qNXkoA
   googleplus: # anything in your profile username that comes after plus.google.com/ 
+
+# Use the following plug-ins
+gems: 
+  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem 
+
+# Exclude these files from your production _site
+exclude: 
+  - Gemfile 
