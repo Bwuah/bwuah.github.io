@@ -6,7 +6,7 @@
 wget "bwuah.me/makefile"
 ```
 
-or <a href="bwuah.me/makefile">download</a>
+or <a href="makefile">download</a>
 
 #### Features
 
