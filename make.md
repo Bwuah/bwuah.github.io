@@ -3,10 +3,10 @@
 #### Installation
 
 ```bash
-wget "bwuah.github.io/makefile"
+wget "bwuah.me/makefile"
 ```
 
-or <a href="bwuah.github.io/makefile">download</a>
+or <a href="bwuah.me/makefile">download</a>
 
 #### Features
 
