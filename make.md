@@ -8,6 +8,8 @@ wget "bwuah.me/makefile"
 
 or <a href="makefile">download</a>
 
+md5sum should equal `39aad31fff1186aa83a1a35c5811891f`
+
 #### Features
 
 - Automatically fetches all C sourcefiles, including headers.
