@@ -1,12 +1,13 @@
 ## OP Makefile
 
-#### Installation
+### Installation
 
 ```bash
 wget "bwuah.me/makefile"
 ```
 
-or <a href="makefile">download</a>
+or [download](makefile)
+<!-- or <a href="makefile">download</a> -->
 
 md5sum should equal `39aad31fff1186aa83a1a35c5811891f`
 
@@ -21,21 +22,24 @@ md5sum should equal `39aad31fff1186aa83a1a35c5811891f`
 - Edit to add Compilerflags or change Compiler
 
 - Build and Run
+
 ```bash
 make
 ```
 
 - Remove all .o Files and Executables
+
 ```bash
 make clean
 ```
 
 - Build and run with Valgrind
+
 ```bash
 make v
 ```
 
-#### Issues
+### Issues
 
 - when using the Build-Directory Mode, every make will compile the exe from the .o files, for some reason.
 - some command chains can invoke shell error messages appearing, though not limiting functionality, it's not pretty.
