@@ -11,6 +11,7 @@
 - `_ = function()` throws away the result. Useful for e.g. `num, _ := strconv.Atoi("5")`
 - `fmt.Printf("%v", ANY_TYPED_VAR)` %v prints the argument using it's types matching format
 - use `...` to use optional paras
+
 ```Go
 func test(a... int) {
 	print(len(a))
@@ -24,12 +25,14 @@ func test(a... int) {
 
 ### Strings
 - reading from stdin:
+
 ```Go
 reader := bufio.NewReader(os.Stdin)
 text, _ := reader.ReadString('\n')
 ```
 - reading from file:
-```C
+
+```Go
 f, err := os.Open("file.txt")
 defer f.Close()
 check(err)
@@ -37,6 +40,7 @@ buf := make([]byte, 64)
 f.Read(buf)
 ```
 - writing to file:
+
 ```Go
 f, err := os.Create("file.txt")
 defer f.Close()
@@ -57,6 +61,7 @@ f.Write([]byte(str))
 - `make([]TYPE, SIZE)` returns a slice of TYPE of size SIZE
 - `string(byte_slice)` returns a string from a given slice of byte
 - array with slices
+
  ```Go
 matrix := make([][]int, ROWS)
 for i:=0; i<ROWS; i++{
@@ -64,6 +69,7 @@ for i:=0; i<ROWS; i++{
 }
 ```
 - iterate over slices
+
 ```Go
 list := make([]int, 5)
 ...
@@ -83,6 +89,7 @@ type Person struct {
 ### Network
 
 ##### TCP Server
+
 ```Go
 ln,_ := net.Listen("tcp", ":4711")
 var wg sync.WaitGroup
@@ -98,6 +105,7 @@ for {
 wg.Wait()
 ```
 ##### TCP Client
+
 ```Go
 Go conn,_ := net.Dial("tcp", "192.168.0.38:4711")
 fmt.Fprintf(conn, "%s", str)
@@ -121,6 +129,7 @@ wg.Wait()
 ```
 
 - using Mutexes:
+
 ```Go
 var mutex = sync.Mutex{}
 mutex.Lock()
@@ -129,6 +138,7 @@ mutex.Unlock()
 ```
 
 - channels: unbuffered
+
 ```Go
 c := make(chan int)
 go func() {
@@ -140,6 +150,7 @@ println(<-c)
 - channels: buffered: `c := make(chan int, 1)` <br>Goroutine will not be waiting for receiver, only waits when buffered channel is full.
 
 - Semaphore with channels:
+
 ```Go
 var sem = make(chan int, RSRC)
 
@@ -151,6 +162,7 @@ func foo(){
 ```
 
 ### CGO
+
 ```Go
 //#include <stdio.h>
 //void print_it() {printf("LuL");}
@@ -163,6 +175,7 @@ func main() {
 and run with `go run main.go` in Linux.
 
 **or** run `go build` while
+
 ```Go
 //#include "file.h"
 import "C"
@@ -173,6 +186,7 @@ import "C"
 ### IO
 
 - stdout is a file
+
  ```C
 FILE* fout = stdout; 
 fprintf(fout, "hello\n");
@@ -180,17 +194,20 @@ fprintf(fout, "hello\n");
 ``` 
 
 - limit scans to n characters *(leave one extra space for '\0' tho)*
+
 ```C
 read_items = fscanf(fin, "%20s %20s", vn, nn);
 ```
 
 - flush buffer
+
 ```C
 fprintf(out, "hey");
 fflush(out);
 ```
 
 - superior version
+
 ```C
 void flush(FILE* in) //superior to fflush, somehow
 {
@@ -200,12 +217,14 @@ void flush(FILE* in) //superior to fflush, somehow
 ```
 
 - clear console
+
 ```C
 fprintf(out, "\033[H\033[2J");
 ```
 
 ### Files
 - stream to fd with **int fileno(FILE\* stream)**
+
 ```C
 FILE* out = fopen("test.txt", "w");
 int fd = fileno(out); //!
@@ -214,6 +233,7 @@ dup(fd); //stdout is now "test.txt"
 ```
 
 - fd to stream with **FILE\* fdopen(int fd, char\* mode)**
+
 ```C
 FILE* out = fdopen(1, "w");
 fprintf(out, "hello\n");
@@ -221,6 +241,7 @@ fprintf(out, "hello\n");
 
 ### Memory
 - always alloc one character more than strlen, for the '\0' terminator
+
 ```C
 new->vn = malloc(strlen(vn)+1);
 new->nn = malloc(strlen(nn)+1);
@@ -229,6 +250,7 @@ strcpy(new->nn, nn);
 ```
 
 - format string overflow-safe
+
 ```C
 char* str = malloc(sizeof(char)*16);
 snprintf(str, 16, "%u.%u.%u.%u", x0, x1, x2, x3);
@@ -236,6 +258,7 @@ snprintf(str, 16, "%u.%u.%u.%u", x0, x1, x2, x3);
 
 ### Multi- Proc/Thread
 - **int fork()**
+
 ```C
 int pid = fork();
     if(!pid) //child
@@ -250,6 +273,7 @@ int pid = fork();
 ```
 
 - **int pipe(int[2])**
+
 ```C
 int fd[2];
 pipe(fd);
@@ -259,6 +283,7 @@ else { write(fd[0], "child->parent"); }
 ```
 
 - Threading
+
 ```C
 void* thread_callee(void* data)
 { ... }
@@ -273,6 +298,7 @@ void thread_caller()
 ```
 
 - detaching thread
+
 ```C
 pthread_t num;
 pthread_create(&num, NULL, callee, (void *) data);
@@ -280,6 +306,7 @@ pthread_detach(num);
 ```
 
 - Mutexes
+
 ```C
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_lock(&mutex);
@@ -289,6 +316,7 @@ pthread_mutex_unlock(&mutex);
 
 ### System
 - execute
+
 ```C
 execvp(list[0], list);
 //when list is a tokenized char** of the arguments
@@ -296,12 +324,14 @@ execvp(list[0], list);
 
 ### Networking
 ##### UDP
+
 ```C
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>  
 ```
 - server
+
 ```C
 int fd = socket(AF_INET, SOCK_DGRAM, 0);
 
@@ -321,6 +351,7 @@ close(fd);
 ```
 
 - client
+
 ```C
 fd = socket(AF_INET, SOCK_DGRAM, 0);
 
@@ -336,6 +367,7 @@ err = sendto(fd, buf, 64, 0, (struct sockaddr*) &dest, sizeof(struct sockaddr_in
 close(fd);
 ```
 ##### TCP 
+
 ```C
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -344,6 +376,7 @@ close(fd);
 #include <unistd.h>
 ```
 - client
+
 ```C
 fd = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -361,6 +394,7 @@ write(fd, buf, 64);
 close(fd);
 ```
 - server
+
 ```C
 int fd, new_sock;
 struct sockaddr_in client_addr, server_addr;
@@ -436,6 +470,7 @@ str is a label, at that position in .data we store a string
 - but single bytes can be addressed (lil' endian) <br> `movb eax, num+3` <br> copies num[3] to eax, so 0.
 
 ##### Stack
+
 ```assembly
 sub esp, 4
 mov [esp], eax
@@ -465,6 +500,7 @@ xor eax, eax
 *todo*
 ### Calls and cdecl
 - caller:
+
 ```assembly
 push eax # para n
 ... 
@@ -476,6 +512,7 @@ add esp, <4*n>
 ```
 
 - callee: 
+
 ```assembly
 push ebp
 mov ebp, esp
@@ -495,6 +532,7 @@ ret
 ```
 
 - local vars
+
 ```assembly
 push eax
 ...
@@ -503,6 +541,7 @@ add esp, 4
 
 ##### Calling x86 from C
 - write a routine, that follows cdecl
+
 ```assembly
 .global FUNCNAME
 .type FUNCNAME @function
@@ -518,6 +557,7 @@ FUNCNAME:
 
 ##### inline assembly in C
 - write instructions
+
 ```asm
 int big_endian()
 {
@@ -532,6 +572,7 @@ int big_endian()
 }
 ```
 - use variables
+
 ```asm
 int in, out1, out2;
 	in = 5;
