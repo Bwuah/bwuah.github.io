@@ -1,186 +1,9 @@
 # Index
-- [Go](https://bwuah.github.io/compendium#go-compendium)
 - [C](https://bwuah.github.io/compendium#c-compendium)
 - [x86](https://bwuah.github.io/compendium#assembly-x86-intel)
+- [Go](https://bwuah.github.io/compendium#go-compendium)
+- [Rust](https://bwuah.github.io/compendium#rust-compendium)
 
-# Go Compendium
-
-### Misc
-
-- `defer FUNCTION()` waits with execution until surrounding function is returned, the paras will be copied already though
-- `_ = function()` throws away the result. Useful for e.g. `num, _ := strconv.Atoi("5")`
-- `fmt.Printf("%v", ANY_TYPED_VAR)` %v prints the argument using it's types matching format
-- use `...` to use optional paras
-
-```Go
-func test(a... int) {
-	print(len(a))
-}
-```
-
-### Variables 
-
-- `var num int`
-- `num := 5`
-
-### Strings
-- reading from stdin:
-
-```Go
-reader := bufio.NewReader(os.Stdin)
-text, _ := reader.ReadString('\n')
-```
-- reading from file:
-
-```Go
-f, err := os.Open("file.txt")
-defer f.Close()
-check(err)
-buf := make([]byte, 64)
-f.Read(buf)
-```
-- writing to file:
-
-```Go
-f, err := os.Create("file.txt")
-defer f.Close()
-check(err)
-f.Write([]byte(str))
-```
-- `str1 := str2` copies, and does'nt only copy reference
-- `str1 == str2` actually compares values, not only reference
-- `str1 + str2` results in appended string
-- `strconv.Itoa(5))` return "5"
-- `num, err := strconv.Atoi("5")` sets num to 5
-- `strings.Count(string, substring)` counts substrings in string
-- `strings.Split(string, seperator)` returns a slice of string, with the separated substrings
-- `text=strings.Replace(text,old, new, n)`replaces all `old` with `new` up to `n` times
-
-### Slices
-
-- `make([]TYPE, SIZE)` returns a slice of TYPE of size SIZE
-- `string(byte_slice)` returns a string from a given slice of byte
-- array with slices
-
- ```Go
-matrix := make([][]int, ROWS)
-for i:=0; i<ROWS; i++{
-	matrix[i] = make([]int, COLS)
-}
-```
-- iterate over slices
-
-```Go
-list := make([]int, 5)
-...
-for indx, elem := range list{
-    fmt.Printf("%d: %d\n", indx, elem)
-}
-```
-
-### Structs
-
-```Go 
-type Person struct {
-    name string
-}
-```
-
-### Network
-
-##### TCP Server
-
-```Go
-ln,_ := net.Listen("tcp", ":4711")
-var wg sync.WaitGroup
-for {
-    conn,_ := ln.Accept()
-    wg.Add(1)
-    go func(c net.Conn){
-        defer wg.Done()
-        res,_ := bufio.NewReader(conn).ReadBytes(0)
-        fmt.Fprintf(conn, "%s", str)
-    }(conn)
-}
-wg.Wait()
-```
-##### TCP Client
-
-```Go
-Go conn,_ := net.Dial("tcp", "192.168.0.38:4711")
-fmt.Fprintf(conn, "%s", str)
-res,_ := bufio.NewReader(conn).ReadBytes(0)
-```
-
-### System
-- `os.Args` is the list of the cmd args, with `os.Args[0]` being the executable name
-- `out, err := exec.Command(para[0], para[1,:]...).CombinedOutput()` runs para[0] with arguments, the output goes to out
-
-### Goroutines
-
-```Go
-var wg = sync.WaitGroup{}
-wg.Add(1)
-go func() {
-    defer wg.Done()
-    fmt.Print("Hello from Thread\n")
-}()
-wg.Wait()
-```
-
-- using Mutexes:
-
-```Go
-var mutex = sync.Mutex{}
-mutex.Lock()
-...
-mutex.Unlock()
-```
-
-- channels: unbuffered
-
-```Go
-c := make(chan int)
-go func() {
-    c <- 2 //waits until other Goroutine receives
-}()
-println(<-c)
-```
-
-- channels: buffered: `c := make(chan int, 1)` <br>Goroutine will not be waiting for receiver, only waits when buffered channel is full.
-
-- Semaphore with channels:
-
-```Go
-var sem = make(chan int, RSRC)
-
-func foo(){
-	sem<-0 //grab one rsrc
-	...
-	<-sem //release rsrc
-}
-```
-
-### CGO
-
-```Go
-//#include <stdio.h>
-//void print_it() {printf("LuL");}
-import "C"
-func main() {
-    C.print_it()
-}
-```
-
-and run with `go run main.go` in Linux.
-
-**or** run `go build` while
-
-```Go
-//#include "file.h"
-import "C"
-...
-```
 # C Compendium
 
 ### IO
@@ -587,3 +410,244 @@ int in, out1, out2;
 ```
 - compile with
 ```gcc -m32 -masm=intel FILENAME.c``` 
+
+# Go Compendium
+
+### Misc
+
+- `defer FUNCTION()` waits with execution until surrounding function is returned, the paras will be copied already though
+- `_ = function()` throws away the result. Useful for e.g. `num, _ := strconv.Atoi("5")`
+- `fmt.Printf("%v", ANY_TYPED_VAR)` %v prints the argument using it's types matching format
+- use `...` to use optional paras
+
+```Go
+func test(a... int) {
+	print(len(a))
+}
+```
+
+### Variables 
+
+- `var num int`
+- `num := 5`
+
+### Strings
+- reading from stdin:
+
+```Go
+reader := bufio.NewReader(os.Stdin)
+text, _ := reader.ReadString('\n')
+```
+- reading from file:
+
+```Go
+f, err := os.Open("file.txt")
+defer f.Close()
+check(err)
+buf := make([]byte, 64)
+f.Read(buf)
+```
+- writing to file:
+
+```Go
+f, err := os.Create("file.txt")
+defer f.Close()
+check(err)
+f.Write([]byte(str))
+```
+- `str1 := str2` copies, and does'nt only copy reference
+- `str1 == str2` actually compares values, not only reference
+- `str1 + str2` results in appended string
+- `strconv.Itoa(5))` return "5"
+- `num, err := strconv.Atoi("5")` sets num to 5
+- `strings.Count(string, substring)` counts substrings in string
+- `strings.Split(string, seperator)` returns a slice of string, with the separated substrings
+- `text=strings.Replace(text,old, new, n)`replaces all `old` with `new` up to `n` times
+
+### Slices
+
+- `make([]TYPE, SIZE)` returns a slice of TYPE of size SIZE
+- `string(byte_slice)` returns a string from a given slice of byte
+- array with slices
+
+ ```Go
+matrix := make([][]int, ROWS)
+for i:=0; i<ROWS; i++{
+	matrix[i] = make([]int, COLS)
+}
+```
+- iterate over slices
+
+```Go
+list := make([]int, 5)
+...
+for indx, elem := range list{
+    fmt.Printf("%d: %d\n", indx, elem)
+}
+```
+
+### Structs
+
+```Go 
+type Person struct {
+    name string
+}
+```
+
+### Network
+
+##### TCP Server
+
+```Go
+ln,_ := net.Listen("tcp", ":4711")
+var wg sync.WaitGroup
+for {
+    conn,_ := ln.Accept()
+    wg.Add(1)
+    go func(c net.Conn){
+        defer wg.Done()
+        res,_ := bufio.NewReader(conn).ReadBytes(0)
+        fmt.Fprintf(conn, "%s", str)
+    }(conn)
+}
+wg.Wait()
+```
+##### TCP Client
+
+```Go
+Go conn,_ := net.Dial("tcp", "192.168.0.38:4711")
+fmt.Fprintf(conn, "%s", str)
+res,_ := bufio.NewReader(conn).ReadBytes(0)
+```
+
+### System
+- `os.Args` is the list of the cmd args, with `os.Args[0]` being the executable name
+- `out, err := exec.Command(para[0], para[1,:]...).CombinedOutput()` runs para[0] with arguments, the output goes to out
+
+### Goroutines
+
+```Go
+var wg = sync.WaitGroup{}
+wg.Add(1)
+go func() {
+    defer wg.Done()
+    fmt.Print("Hello from Thread\n")
+}()
+wg.Wait()
+```
+
+- using Mutexes:
+
+```Go
+var mutex = sync.Mutex{}
+mutex.Lock()
+...
+mutex.Unlock()
+```
+
+- channels: unbuffered
+
+```Go
+c := make(chan int)
+go func() {
+    c <- 2 //waits until other Goroutine receives
+}()
+println(<-c)
+```
+
+- channels: buffered: `c := make(chan int, 1)` <br>Goroutine will not be waiting for receiver, only waits when buffered channel is full.
+
+- Semaphore with channels:
+
+```Go
+var sem = make(chan int, RSRC)
+
+func foo(){
+	sem<-0 //grab one rsrc
+	...
+	<-sem //release rsrc
+}
+```
+
+### CGO
+
+```Go
+//#include <stdio.h>
+//void print_it() {printf("LuL");}
+import "C"
+func main() {
+    C.print_it()
+}
+```
+
+and run with `go run main.go` in Linux.
+
+**or** run `go build` while
+
+```Go
+//#include "file.h"
+import "C"
+...
+```
+
+# Rust Compendium
+
+contact rust@bwuah.me
+
+### General
+
+#### Format
+
+- `{}` for general purpose
+- `{?}` for debug
+
+#### Unwrap Error
+
+`my_vector.last().unwrap()` to get the last element, and not a wrapper including errors.
+
+#### String to Int
+
+`my_string.parse::<i64>().unwrap()`
+
+#### Enumerate
+
+`for (index, element) in ___.into_iter().enumerate() {...}`
+
+#### Command Line Parameter
+
+`let args: Vec<String> = std::env::args().collect()`  
+`std::env::args()` returns an iterator, `collect()` converts it into a vector.
+
+#### Type Hints
+
+`let mat1: Vec<Vec<i64>> = ...`  
+Annotate the type, usually rustc can infere the type.
+
+### Flow Control
+
+#### For Loop
+
+```rust
+for x in 0..10
+{
+    println!("{}", x);
+}
+```
+
+#### Pattern Matching
+
+```rust
+match args[2].as_str()
+{
+    "+" => mat3 = mat_add(mat1, mat2),
+    "-" => mat3 = mat_sub(mat1, mat2),
+     _  => panic!("Fuck"),
+}
+```
+
+#### Assertions
+
+conditional termination of the programme
+
+- with `assert!(expr)` you check `expr`'s boolean value
+- with `assert!(expr, msg_string)` you customise the message
