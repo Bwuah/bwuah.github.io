@@ -1,8 +1,10 @@
 # Index
 - [C](https://bwuah.github.io/compendium#c-compendium)
 - [x86](https://bwuah.github.io/compendium#assembly-x86-intel)
+- [NASM](https://bwuah.github.io/compendium#nasm-amd64)
 - [Go](https://bwuah.github.io/compendium#go-compendium)
 - [Rust](https://bwuah.github.io/compendium#rust-compendium)
+- [Python](https://bwuah.github.io/compendium#python-compendium)
 
 # C Compendium
 
