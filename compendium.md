@@ -424,6 +424,9 @@ section .data
 section .text
 global _start
 
+func:
+    ...
+
 _start:
 
     ; sys_write
@@ -432,7 +435,9 @@ _start:
     mov RSI, str        
     mov RDX, str_len    
     syscall
-
+	
+    call func
+    
     ; sys_exit
     mov RAX, 60
     mov RDI, 0          ; error code
