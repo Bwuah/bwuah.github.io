@@ -599,7 +599,7 @@ contact rust@bwuah.me
 #### Format
 
 - `{}` for general purpose
-- `{?}` for debug
+- `{:?}` for debug
 
 #### Unwrap Error
 
@@ -622,8 +622,6 @@ contact rust@bwuah.me
 
 `let mat1: Vec<Vec<i64>> = ...`  
 Annotate the type, usually rustc can infere the type.
-
-### Flow Control
 
 #### For Loop
 
@@ -651,3 +649,46 @@ conditional termination of the programme
 
 - with `assert!(expr)` you check `expr`'s boolean value
 - with `assert!(expr, msg_string)` you customise the message
+
+#### Threading
+
+```Rust
+use std::thread;
+
+fn main()
+{
+    let mut var = "oof";
+    let mut thrd = thread::spawn( move ||
+    {
+       println!("{}", var); 
+    });
+    thrd.join();
+}
+```
+
+#### Mutexes
+
+```Rust
+use std::sync::Mutex;
+fn main()
+{
+    let m = Mutex::new(String::from("oof"));
+
+    {
+        let mut x = m.lock().unwrap();
+        *x += " oof af";
+    }
+
+    println!("{:?}", m);
+}
+```
+
+#### Channels
+
+```Rust
+use std::sync::mpsc;
+...
+let (t, r) = mpsc::channel();
+t.send("oooof").unwrap();
+let str = r.recv().unwrap());
+```
