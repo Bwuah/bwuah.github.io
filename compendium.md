@@ -732,3 +732,75 @@ let (t, r) = mpsc::channel();
 t.send("oooof").unwrap();
 let str = r.recv().unwrap());
 ```
+
+# Python Compendium
+
+#### Timer
+```Python
+from timeit import default_timer as timer
+t1 = timer()
+foo()
+t2 = timer()
+elapsed_time = t2-t1
+```
+
+#### Matplotlib
+```Python
+import matplotlib.pyplot as pp
+x = [a for a in range(100)]
+y = [a*a for a in range(100)]
+# here: y(x) : x -> x^2 
+pp.plot(x, y)
+pp.ylabel("A label for y")
+pp.xlabel("A label for x")
+pp.grid(True)
+pp.show()
+```
+![Pic](https://i.imgur.com/cOaWiN0.png)
+
+#### Numpy
+```Python
+import numpy as np  
+
+# create an NxM Matrix of ints, with random initialisation
+np.random.randint(0, 2, (n, m), dtype=int)
+
+# create an NxM Matrix of floats, values are whatever was in memory before
+np.empty((n, m), dtype=float)
+
+# create an NxM Matrix of Ints, randomly in [min, max[
+np.random.randint(min, max , (n, m), dtype=int)
+
+# multiply Matrices
+np.matmul(A, B)
+
+# equality check
+np.array_equal(A, B)
+```
+
+#### Other
+- Default values for optional Params
+```
+def __init__(self, parent=None, state=[0] * 9, max_turn=True):
+  ...
+```
+
+- Enumerate
+```Python
+for index, elem in enumerate(array):
+  ...
+```
+
+- List Comprehension
+```Python
+[a for a in [x**2 for x in range(100)] if a <100]
+# nested comprehension
+# the inner results in all Square Numbers from 0 to 99^2
+# the outer only accepts those smaller than 100
+```
+
+#### Custom Data Models
+- [useful](https://docs.python.org/3/reference/datamodel.html#basic-customization)
+
+#### Tkinter
+- [introduction](http://python-textbok.readthedocs.io/en/1.0/Introduction_to_GUI_Programming.html)
