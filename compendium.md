@@ -733,6 +733,36 @@ t.send("oooof").unwrap();
 let str = r.recv().unwrap());
 ```
 
+#### Subprocess
+
+```Rust
+std::process::Command;
+let output = Command::new("echo").arg("Hello\n".output();
+```
+
+#### Fork
+
+```Rust
+extern crate nix;
+use nix::sys::signal::*;
+use nix::unistd::*;
+
+fn main()
+{
+    match fork().expect("fork failed")
+    {
+        ForkResult::Parent{child_pid} =>
+	{
+	    ...
+	}
+	ForkResult::Child =>
+	{
+	     ...
+	}
+    }
+}
+```
+
 # Python Compendium
 
 #### Timer
