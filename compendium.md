@@ -140,6 +140,24 @@ pthread_mutex_lock(&mutex);
 pthread_mutex_unlock(&mutex);
 ```
 
+- Conditional Variable
+
+```C
+pthread_cond_t con = PTHREAD_COND_INITIALIZER;
+...
+pthread_mutex_lock(&mutex);
+pthread_cond_wait(&con, &mutex);
+...
+pthread_mutex_unlock(&mutex);
+...
+pthread_cond_destroy(con);
+
+// unblock with:
+
+pthread_cond_signal(con);
+pthread_cond_broadcast(con);
+```
+
 ### System
 - execute
 
