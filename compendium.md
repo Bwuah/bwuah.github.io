@@ -418,7 +418,8 @@ int in, out1, out2;
 section .data
 
     str: db "Hello World", 10	; define byte
-    str_len equ $ - str 	; equ is a '#define'         
+    str_len equ $ - str 	; equ is a '#define'      
+    buf: resq 4			; reserves four quadword
     
 section .text
 global _start
