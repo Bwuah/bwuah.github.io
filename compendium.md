@@ -736,6 +736,25 @@ t.send("oooof").unwrap();
 let str = r.recv().unwrap());
 ```
 
+#### Wait Groups
+
+```Rust
+use std::thread;
+
+let wg = chan::WaitGroup::new();
+for _ in 0..4
+{
+	wg.add(1);
+	let wg = wg.clone
+	thread::spawn(move ||
+	{
+		...
+		wg.done();
+	})
+}
+wg.wait();
+```
+
 #### Subprocess
 
 ```Rust
