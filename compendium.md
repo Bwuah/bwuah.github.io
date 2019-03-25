@@ -686,6 +686,24 @@ match args[2].as_str()
 }
 ```
 
+#### File I/O
+
+```Rust
+use std::fs::File;
+use std::io::prelude::*;
+use std::io::BufReader;
+
+fn main() -> std::io::Result<()> 
+{
+    let file = File::open("text.txt")?;
+    let mut buf_r = BufReader::new(file);
+    let mut content = String::new();
+    buf_r.read_to_string(&mut content)?;
+    println!("{}", content);
+    Ok(())
+}
+```
+
 #### Assertions
 
 conditional termination of the programme
