@@ -411,6 +411,40 @@ int in, out1, out2;
 - compile with
 ```gcc -m32 -masm=intel FILENAME.c``` 
 
+# NASM amd64
+
+### Example
+```nasm
+section .data
+
+    str: db "Hello World", 10	; define byte
+    str_len equ $ - str 	; equ is a '#define'         
+    
+section .text
+global _start
+
+_start:
+
+    ; sys_write
+    mov RAX, 1
+    mov RDI, 1          ; stdout
+    mov RSI, str        
+    mov RDX, str_len    
+    syscall
+
+    ; sys_exit
+    mov RAX, 60
+    mov RDI, 0          ; error code
+    syscall
+
+```
+
+### Compilation
+
+`nasm -f elf64 hello_world.s`
+`ld hello_world.o`
+`./a.out`
+
 # Go Compendium
 
 ### Misc
