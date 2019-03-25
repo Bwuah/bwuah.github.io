@@ -117,6 +117,7 @@ void thread_caller()
 {   
     struct data info;
     pthread_t num;
+    // int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void*), void *arg);
     pthread_create(&num, NULL, thread_callee, (void*) &info);
     pthread_join(num, NULL);
 }
