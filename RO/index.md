@@ -55,7 +55,7 @@ load_long $t1, imm  ->  lui $t1, imm_high
 
 ## Stack
 
-![stack](/c1.png)
+![stack](https://www.bwuah.me/RO/c1.png)
 
 ## Overflow
 
@@ -108,9 +108,9 @@ load_long $t1, imm  ->  lui $t1, imm_high
 
 ## Direct Mapped Cache
 
-![](/c2.png)
+![](https://www.bwuah.me/RO/c2.png)
 
-![](/c3.png)
+![](https://www.bwuah.me/RO/c3.png)
 
 ### Lesen
 
@@ -129,11 +129,11 @@ gleichzeitig schreiben|dirty bit
 
 \*mit Buffer -> read miss & buffer nicht leer
 
-![](/c4.png)
+![](https://www.bwuah.me/RO/c4.png)
 
 ## Cache Types
 
-![](/c5.png)
+![](https://www.bwuah.me/RO/c5.png)
 
 ## Fully Associative
 
@@ -143,7 +143,7 @@ gleichzeitig schreiben|dirty bit
 
 ## Set Associative / n-way set-associative
 
-![](/c6.png)
+![](https://www.bwuah.me/RO/c6.png)
 
 ### Verdrängungsstrategien
 
