@@ -14,7 +14,7 @@
     :--:|:--:|:--:|:--:|:--:|:--:
     000000|-----|-----|-----|-----|------
     immer 0|source|target|dest|shift amount|Arith. Mode
-    
+
     z.B. SUB, AND
 
 - ## I Format
@@ -83,7 +83,83 @@ load_long $t1, imm  ->  lui $t1, imm_high
 
 # Pipelines
 
+- k Stufen Pipeline
+
+## Strukturkonflikte
+
+- selbe Ressource benötigt
+
+- Harvard Arch schafft Abhilfe
+
+## Datenabhängigkeit
+
+```mips
+add       $t1, $t2, $t3
+#          v    
+addi $t1, $t1, 1
+#     v
+sw   $t1, 4($s2)
+```
+
+- Anti Abhängigkeit
+
+    - i ließt und j schreibt
+
+- Ausgabe Abhängigkeit
+
+    - beide schreiben
+
+> Data Hazards treten auf, wenn Abhängigkeiten zu **dicht** auf einander folgen.
+
+#|RAW|WAW|WAR|RAR
+:---:|:---:|:---:|:---:|:---:
+Hazard?|ja|ja|ja|nein
+Typ|echte Abh.|Ausgabeabh.|Anti Abh.|-
+Pipeline?|ja|maybe|beim umsortieren|-
+
+> NOPs einfügen
+
+> Operand forwarding
+
+![](https://www.bwuah.me/RO/c7.PNG)
+
+![](https://www.bwuah.me/RO/c8.PNG)
+
+> LW, dann Register lesen verursacht immer noch Hazard!
+
+> STALL oder besser: Umordnen von Code
+
+---
+
+## Dynamisches Pipeline Scheduling
+
+In Order falls möglich, sonst queue
+
+-> WAR und WAW Hazards
+
+
+## Kontrollflusskonflikte
+
+> bei branches: wo steht der nächste Befehl
+
+- Flushing: ???
+
 # Branch Prediction
+
+### Dynamische Sprungvorhersage:
+
+> Vorhersage muss zwei mal falsch sein, damit übernommen wird.
+
+> Branch Target Buffer (wie Cache)
+
+# Superskalare MIPS
+
+ALU|Datatransfere
+:---:|:---:
+-|lw
+addi|-
+add|-
+bne|sw
 
 # Caching
 
