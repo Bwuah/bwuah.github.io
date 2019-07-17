@@ -1,0 +1,159 @@
+# Performance
+
+- Latency
+
+- Throughput
+
+- CPI: *cycles per instruction*
+
+# MIPS
+
+- ## R Format
+
+    op|rs|rt|rd|shamt|funct
+    :--:|:--:|:--:|:--:|:--:|:--:
+    000000|-----|-----|-----|-----|------
+    immer 0|source|target|dest|shift amount|Arith. Mode
+    z.B. SUB, AND
+
+- ## I Format
+
+    op|rs|rt|immediate
+    :--:|:--:|:--:|:--:
+    ------|-----|-----|----------------
+    Opcode|source|target|16bit Immediate
+
+    z.B. ADDI, BEQ
+
+- ## J Format
+
+    op|addr
+    :--:|:--:
+    ------|--------------------------------
+    Opcode|Shifted left by 2bits (wordsize=4) 
+    '|and stays in the same 4bit region
+
+    z.B. J, JAL, JR
+
+## Pseudoinstruktionen
+
+```MIPS
+move $t0, $t1       ->  add $t0, $t1, $zero
+
+blt $t1, t2, label  ->  slt $at, $t1, $t2
+                        bne $at, $zero, $label
+
+bne $t1, $t2, far_l ->  beq $t1, $t2, tmp_l
+                        j far_l
+                        tmp_l: ...
+
+li $t1, imm         ->  ori $t1, $zero, imm
+
+load_long $t1, imm  ->  lui $t1, imm_high
+                        ori $t1, $t1, imm_low
+```
+
+## Stack
+
+![stack](/c1.png)
+
+## Overflow
+
+- exception
+
+- pre defined position in code
+
+- U versions of OPs come without overflow check
+
+# Steuerwerk
+
+## ALU
+
+```
+0000 = and
+0001 = or
+0010 = add
+0110 = subtract
+0111 = slt
+1100 = nor
+```
+
+???
+
+# Pipelines
+
+# Branch Prediction
+
+# Caching
+
+- zeitliche Lokalität
+
+    - Schleifen/Unterprogramme
+
+- räumliche Lokalität
+
+    - Arrays/Objekte
+
+---
+
+- Hit vs Miss
+
+- hit rate
+
+- hit time
+
+- miss penalty
+
+--- 
+
+## Direct Mapped Cache
+
+![](/c2.png)
+
+![](/c3.png)
+
+### Lesen
+
+hit|miss
+:---:|:---:
+easy|stall, schreiben, erneut lesen|
+
+### Schreiben
+
+-> Daten inkonsistent mit Hauptspeicher
+
+Write Through | Write Back
+:---:|:---:
+gleichzeitig schreiben|dirty bit
+-* |  read miss
+
+\*mit Buffer -> read miss & buffer nicht leer
+
+![](/c4.png)
+
+## Cache Types
+
+![](/c5.png)
+
+## Fully Associative
+
+- Komperator für jeden Eintrag
+
+- wenig effizient
+
+## Set Associative / n-way set-associative
+
+![](/c6.png)
+
+### Verdrängungsstrategien
+
+- RANDOM
+
+- LIFO
+
+- FIFO
+
+- LFU *least frequently used*
+
+- LRU *least recently used*
+
