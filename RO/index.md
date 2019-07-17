@@ -14,6 +14,7 @@
     :--:|:--:|:--:|:--:|:--:|:--:
     000000|-----|-----|-----|-----|------
     immer 0|source|target|dest|shift amount|Arith. Mode
+    
     z.B. SUB, AND
 
 - ## I Format
