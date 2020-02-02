@@ -1,9 +1,9 @@
 theme: jekyll-theme-cayman
 
 # Name of your site (displayed in the header)
-name: Bwuah.me
+name: TheBwuah
 
-title: Bwuah.me
+title: Bwuaaah!
 
 # Short bio or description (displayed in the header) 
 # description: Bwuaaaaah!!
@@ -13,7 +13,7 @@ avatar: https://avatars2.githubusercontent.com/u/43686459?s=400&v=4
 
 footer-links: 
   dribbble: 
-  email: github@bwuah.me
+  email: github@lennihein.com
   facebook: 
   flickr: 
   github: lennihein
@@ -21,7 +21,7 @@ footer-links:
   linkedin: 
   pinterest: 
   rss: # just type anything here for a working RSS icon, make sure you set the "url" above! 
-  twitter: bwuaaah
+  twitter: thebwuah
   stackoverflow: users/8114293/lennihein
   youtube: channel/UCB84qj3UWeBzh3H29qNXkoA
   googleplus: # anything in your profile username that comes after plus.google.com/ 
