@@ -6,13 +6,13 @@
 - [Rust](https://bwuah.github.io/compendium#rust-compendium)
 - [Python](https://bwuah.github.io/compendium#python-compendium)
 
-# C Compendium
+# C compendium
 
 ### IO
 
 - stdout is a file
 
- ```C
+ ```c
 FILE* fout = stdout; 
 fprintf(fout, "hello\n");
 //stdout is := fdopen(1, "w");
@@ -20,20 +20,20 @@ fprintf(fout, "hello\n");
 
 - limit scans to n characters *(leave one extra space for '\0' tho)*
 
-```C
+```c
 read_items = fscanf(fin, "%20s %20s", vn, nn);
 ```
 
 - flush buffer
 
-```C
+```c
 fprintf(out, "hey");
 fflush(out);
 ```
 
 - superior version
 
-```C
+```c
 void flush(FILE* in) //superior to fflush, somehow
 {
     char buf;
@@ -43,14 +43,14 @@ void flush(FILE* in) //superior to fflush, somehow
 
 - clear console
 
-```C
+```c
 fprintf(out, "\033[H\033[2J");
 ```
 
 ### Files
 - stream to fd with **int fileno(FILE\* stream)**
 
-```C
+```c
 FILE* out = fopen("test.txt", "w");
 int fd = fileno(out); //!
 close(1); //closing stdout
@@ -59,7 +59,7 @@ dup(fd); //stdout is now "test.txt"
 
 - fd to stream with **FILE\* fdopen(int fd, char\* mode)**
 
-```C
+```c
 FILE* out = fdopen(1, "w");
 fprintf(out, "hello\n");
 ```
@@ -67,7 +67,7 @@ fprintf(out, "hello\n");
 ### Memory
 - always alloc one character more than strlen, for the '\0' terminator
 
-```C
+```c
 new->vn = malloc(strlen(vn)+1);
 new->nn = malloc(strlen(nn)+1);
 strcpy(new->vn, vn);
@@ -76,7 +76,7 @@ strcpy(new->nn, nn);
 
 - format string overflow-safe
 
-```C
+```c
 char* str = malloc(sizeof(char)*16);
 snprintf(str, 16, "%u.%u.%u.%u", x0, x1, x2, x3);
 ```
@@ -84,12 +84,12 @@ snprintf(str, 16, "%u.%u.%u.%u", x0, x1, x2, x3);
 ### Multi- Proc/Thread
 - **int fork()**
 
-```C
+```c
 int pid = fork();
     if(!pid) //child
     {
         ...
-	exit(EXIT_SUCCESS);
+	exit(EXIT_SUccESS);
     }
     else //parent
     {
@@ -99,7 +99,7 @@ int pid = fork();
 
 - **int pipe(int[2])**
 
-```C
+```c
 int fd[2];
 pipe(fd);
 int pid = fork();
@@ -109,7 +109,7 @@ else { write(fd[0], "child->parent"); }
 
 - Threading
 
-```C
+```c
 void* thread_callee(void* data)
 { ... }
 
@@ -125,7 +125,7 @@ void thread_caller()
 
 - detaching thread
 
-```C
+```c
 pthread_t num;
 pthread_create(&num, NULL, callee, (void *) data);
 pthread_detach(num);
@@ -133,17 +133,17 @@ pthread_detach(num);
 
 - Mutexes
 
-```C
+```c
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_lock(&mutex);
 //critical
 pthread_mutex_unlock(&mutex);
 ```
 
-- Conditional Variable
+- conditional Variable
 
-```C
-pthread_cond_t con = PTHREAD_COND_INITIALIZER;
+```c
+pthread_cond_t con = PTHREAD_cOND_INITIALIZER;
 ...
 pthread_mutex_lock(&mutex);
 pthread_cond_wait(&con, &mutex);
@@ -161,7 +161,7 @@ pthread_cond_broadcast(con);
 ### System
 - execute
 
-```C
+```c
 execvp(list[0], list);
 //when list is a tokenized char** of the arguments
 ```
@@ -169,15 +169,15 @@ execvp(list[0], list);
 ### Networking
 ##### UDP
 
-```C
+```c
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>  
 ```
 - server
 
-```C
-int fd = socket(AF_INET, SOCK_DGRAM, 0);
+```c
+int fd = socket(AF_INET, SOcK_DGRAM, 0);
 
 struct sockaddr_in addr ;
 addr.sin_family = AF_INET;
@@ -196,8 +196,8 @@ close(fd);
 
 - client
 
-```C
-fd = socket(AF_INET, SOCK_DGRAM, 0);
+```c
+fd = socket(AF_INET, SOcK_DGRAM, 0);
 
 struct sockaddr_in dest;
 dest.sin_family = AF_INET;
@@ -210,9 +210,9 @@ err = sendto(fd, buf, 64, 0, (struct sockaddr*) &dest, sizeof(struct sockaddr_in
 
 close(fd);
 ```
-##### TCP 
+##### TcP 
 
-```C
+```c
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
@@ -221,8 +221,8 @@ close(fd);
 ```
 - client
 
-```C
-fd = socket(AF_INET, SOCK_STREAM, 0);
+```c
+fd = socket(AF_INET, SOcK_STREAM, 0);
 
 struct sockaddr_in dest;
 dest.sin_family = AF_INET;
@@ -239,12 +239,12 @@ close(fd);
 ```
 - server
 
-```C
+```c
 int fd, new_sock;
 struct sockaddr_in client_addr, server_addr;
 socklen_t sockaddr_in_len = sizeof(struct sockaddr_in);
 
-fd = socket(AF_INET, SOCK_STREAM, 0);
+fd = socket(AF_INET, SOcK_STREAM, 0);
 
 server_addr.sin_family = AF_INET;
 server_addr.sin_port = htons(4711);
@@ -309,7 +309,7 @@ str is a label, at that position in .data we store a string
 ### .text Section
 
 ##### Instructions
-- [Instructions](http://www.jegerlehner.ch/intel/IntelCodeTable.pdf)
+- [Instructions](http://www.jegerlehner.ch/intel/IntelcodeTable.pdf)
 - `mov eax, ebx` is eax:=ebx
 - but single bytes can be addressed (lil' endian) <br> `movb eax, num+3` <br> copies num[3] to eax, so 0.
 
@@ -342,7 +342,7 @@ xor eax, eax
 - 4: sys_write
 ### Macros
 *todo*
-### Calls and cdecl
+### calls and cdecl
 - caller:
 
 ```assembly
@@ -350,7 +350,7 @@ push eax # para n
 ... 
 push eax # para 1
 
-call FUNC
+call FUNc
 
 add esp, <4*n>
 ```
@@ -387,9 +387,9 @@ add esp, 4
 - write a routine, that follows cdecl
 
 ```assembly
-.global FUNCNAME
-.type FUNCNAME @function
-FUNCNAME:
+.global FUNcNAME
+.type FUNcNAME @function
+FUNcNAME:
   ...  
 ```
 - declare the function, with parameter list <br>
@@ -397,7 +397,7 @@ FUNCNAME:
 - compile \*.asm: `as -32 -o NAME.o NAME.asm`
 - compile \*.c: `gcc -m32 NAME.o OTHERNAME.c`
 - run: `./a.out`
-- Disassemble with <br> `objdump -S -C -d -M intel NAME.o` <br> `objdump --source --demangle --disassemble -M intel NAME.o`
+- Disassemble with <br> `objdump -S -c -d -M intel NAME.o` <br> `objdump --source --demangle --disassemble -M intel NAME.o`
 
 ##### inline assembly in C
 - write instructions
@@ -476,7 +476,7 @@ _start:
 
 ### Misc
 
-- `defer FUNCTION()` waits with execution until surrounding function is returned, the paras will be copied already though
+- `defer FUNcTION()` waits with execution until surrounding function is returned, the paras will be copied already though
 - `_ = function()` throws away the result. Useful for e.g. `num, _ := strconv.Atoi("5")`
 - `fmt.Printf("%v", ANY_TYPED_VAR)` %v prints the argument using it's types matching format
 - use `...` to use optional paras
@@ -503,7 +503,7 @@ text, _ := reader.ReadString('\n')
 
 ```Go
 f, err := os.Open("file.txt")
-defer f.Close()
+defer f.close()
 check(err)
 buf := make([]byte, 64)
 f.Read(buf)
@@ -511,8 +511,8 @@ f.Read(buf)
 - writing to file:
 
 ```Go
-f, err := os.Create("file.txt")
-defer f.Close()
+f, err := os.create("file.txt")
+defer f.close()
 check(err)
 f.Write([]byte(str))
 ```
@@ -521,7 +521,7 @@ f.Write([]byte(str))
 - `str1 + str2` results in appended string
 - `strconv.Itoa(5))` return "5"
 - `num, err := strconv.Atoi("5")` sets num to 5
-- `strings.Count(string, substring)` counts substrings in string
+- `strings.count(string, substring)` counts substrings in string
 - `strings.Split(string, seperator)` returns a slice of string, with the separated substrings
 - `text=strings.Replace(text,old, new, n)`replaces all `old` with `new` up to `n` times
 
@@ -534,7 +534,7 @@ f.Write([]byte(str))
  ```Go
 matrix := make([][]int, ROWS)
 for i:=0; i<ROWS; i++{
-	matrix[i] = make([]int, COLS)
+	matrix[i] = make([]int, cOLS)
 }
 ```
 - iterate over slices
@@ -565,7 +565,7 @@ var wg sync.WaitGroup
 for {
     conn,_ := ln.Accept()
     wg.Add(1)
-    go func(c net.Conn){
+    go func(c net.conn){
         defer wg.Done()
         res,_ := bufio.NewReader(conn).ReadBytes(0)
         fmt.Fprintf(conn, "%s", str)
@@ -573,7 +573,7 @@ for {
 }
 wg.Wait()
 ```
-##### TCP Client
+##### TCP client
 
 ```Go
 Go conn,_ := net.Dial("tcp", "192.168.0.38:4711")
@@ -583,7 +583,7 @@ res,_ := bufio.NewReader(conn).ReadBytes(0)
 
 ### System
 - `os.Args` is the list of the cmd args, with `os.Args[0]` being the executable name
-- `out, err := exec.Command(para[0], para[1,:]...).CombinedOutput()` runs para[0] with arguments, the output goes to out
+- `out, err := exec.command(para[0], para[1,:]...).combinedOutput()` runs para[0] with arguments, the output goes to out
 
 ### Goroutines
 
@@ -621,7 +621,7 @@ println(<-c)
 - Semaphore with channels:
 
 ```Go
-var sem = make(chan int, RSRC)
+var sem = make(chan int, RSRc)
 
 func foo(){
 	sem<-0 //grab one rsrc
@@ -630,14 +630,14 @@ func foo(){
 }
 ```
 
-### CGO
+### cGO
 
 ```Go
 //#include <stdio.h>
 //void print_it() {printf("LuL");}
-import "C"
+import "c"
 func main() {
-    C.print_it()
+    c.print_it()
 }
 ```
 
@@ -647,13 +647,13 @@ and run with `go run main.go` in Linux.
 
 ```Go
 //#include "file.h"
-import "C"
+import "c"
 ...
 ```
 
 # Rust Compendium
 
-contact rust@bwuah.me
+contact rust@lennihein.com
 
 ### General
 
@@ -762,7 +762,7 @@ fn main()
 }
 ```
 
-#### Channels
+#### channels
 
 ```Rust
 use std::sync::mpsc;
@@ -794,8 +794,8 @@ wg.wait();
 #### Subprocess
 
 ```Rust
-std::process::Command;
-let output = Command::new("echo").arg("Hello\n".output();
+std::process::command;
+let output = command::new("echo").arg("Hello\n".output();
 ```
 
 #### Fork
@@ -813,7 +813,7 @@ fn main()
 	{
 	    ...
 	}
-	ForkResult::Child =>
+	ForkResult::child =>
 	{
 	     ...
 	}
@@ -821,7 +821,7 @@ fn main()
 }
 ```
 
-# Python Compendium
+# Python compendium
 
 #### Timer
 ```Python
@@ -879,7 +879,7 @@ for index, elem in enumerate(array):
   ...
 ```
 
-- List Comprehension
+- List comprehension
 ```Python
 [a for a in [x**2 for x in range(100)] if a <100]
 # nested comprehension
