@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="author" content="Fraunhofer FKIE">
+<meta name="description" content="This is the website of the lecture Program Analysis and Binary Exploitation at the University of Bonn">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.75.1">
+
+<link rel="canonical" href="https://pabe.seclab-bonn.de/exercise_sheets/sheet_0/">
+<meta property="og:title" content="Sheet 0">
+<meta property="og:description" content="PABE Exercise Sheet 0 NOTE:
+ This sheet is not part of the mandatory sheets that are required for the admission for the final exam! Contrary to the other sheets, you will not hand in solutions to the tasks on this sheet. Instead, you are advised to solve them on your own or in a group, and we will talk about the tasks in the first exercise session on 2020-11-13. All tasks should be solved under Linux (Fedora, Arch Linux, Ubuntu, Kali, &lt;your_favorite_distro_here&gt;).">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pabe.seclab-bonn.de/exercise_sheets/sheet_0/">
+<meta property="article:published_time" content="2020-10-03T05:51:52+02:00">
+<meta property="article:modified_time" content="2020-10-03T05:51:52+02:00">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sheet 0">
+<meta name="twitter:description" content="PABE Exercise Sheet 0 NOTE:
+ This sheet is not part of the mandatory sheets that are required for the admission for the final exam! Contrary to the other sheets, you will not hand in solutions to the tasks on this sheet. Instead, you are advised to solve them on your own or in a group, and we will talk about the tasks in the first exercise session on 2020-11-13. All tasks should be solved under Linux (Fedora, Arch Linux, Ubuntu, Kali, &lt;your_favorite_distro_here&gt;).">
+
+
+<meta itemprop="name" content="Sheet 0">
+<meta itemprop="description" content="PABE Exercise Sheet 0 NOTE:
+ This sheet is not part of the mandatory sheets that are required for the admission for the final exam! Contrary to the other sheets, you will not hand in solutions to the tasks on this sheet. Instead, you are advised to solve them on your own or in a group, and we will talk about the tasks in the first exercise session on 2020-11-13. All tasks should be solved under Linux (Fedora, Arch Linux, Ubuntu, Kali, &lt;your_favorite_distro_here&gt;).">
+<meta itemprop="datePublished" content="2020-10-03T05:51:52+02:00">
+<meta itemprop="dateModified" content="2020-10-03T05:51:52+02:00">
+<meta itemprop="wordCount" content="934">
+
+
+
+<meta itemprop="keywords" content="">
+
+
+<link rel="stylesheet" href="Sheet%200-Dateien/layout.css">
+
+
+<link rel="stylesheet" href="Sheet%200-Dateien/default-dark.css">
+
+
+
+
+<title>
+
+
+     Sheet 0 
+
+</title>
+
+</head>
+
+
+<body data-gr-c-s-loaded="true">
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="https://pabe.seclab-bonn.de/">Program Analysis and Binary Exploitation</a>
+    </div> 
+
+    
+    
+    <a class="nav-item" href="https://pabe.seclab-bonn.de/posts/"><div class="nav-item-title">Blog</div></a>
+    
+    <a class="nav-item" href="https://pabe.seclab-bonn.de/slides/"><div class="nav-item-title">Slides</div></a>
+    
+    <a class="nav-item" href="https://pabe.seclab-bonn.de/exercise_sheets/"><div class="nav-item-title">Exercise Sheets</div></a>
+    
+    <a class="nav-item" href="https://pabe.seclab-bonn.de/books/"><div class="nav-item-title">Books</div></a>
+    
+    <a class="nav-item" href="https://pabe.seclab-bonn.de/gitlab/"><div class="nav-item-title">Gitlab</div></a>
+    
+    <a class="nav-item" href="https://pabe.seclab-bonn.de/internal/"><div class="nav-item-title">Internal</div></a>
+    
+
+  </nav>
+
+  
+<div class="social-links-header">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> Sheet 0 </h1>
+    <div class="content"> <h1 id="pabe-exercise-sheet-0">PABE Exercise Sheet 0</h1>
+<p><strong>NOTE</strong>:</p>
+<ul>
+<li>This sheet is <strong>not</strong> part of the mandatory sheets that are required for the admission for the final exam!</li>
+<li>Contrary to the other sheets, you will not hand in solutions to the 
+tasks on this sheet.
+Instead, you are advised to solve them on your own or in a group, and we
+ will talk about the tasks in the first exercise session on 2020-11-13.</li>
+<li>All tasks should be solved under Linux (Fedora, Arch Linux, Ubuntu, Kali, &lt;your_favorite_distro_here&gt;).
+Use a virtual machine if you do not have access to a native linux machine.</li>
+</ul>
+<h2 id="task-1---python-programming-with-pwntools">Task 1 - Python Programming With pwntools</h2>
+<p>Write a <strong>Python 3</strong> script and use <code>pwntools</code> <a href="https://github.com/Gallopsled/pwntools">(link)</a>. In more detail, connect to <code>pabe.seclab-bonn.de</code> on port <code>11337</code> with <code>remote</code> <a href="http://docs.pwntools.com/en/stable/tubes/sockets.html?highlight=remote#pwnlib.tubes.remote.remote">(link)</a> and do the following:</p>
+<ul>
+<li>read the first string that always ends with an <code>@</code> character <a href="http://docs.pwntools.com/en/stable/tubes.html#pwnlib.tubes.tube.tube.recvuntil">(link)</a></li>
+<li>read the second string that always ends with a <code>%</code> character</li>
+<li>concatenate those two strings <strong>without the special characters <code>@</code> and <code>%</code></strong> and send them back to the server</li>
+<li>the server will send a string back to tell you that everything was correct -&gt; check that string!</li>
+</ul>
+<h2 id="task-2---intel-x86-assembler">Task 2 - Intel x86 Assembler</h2>
+<p>Have a look at the following snippet of assembler code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tbody><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">xor</span> <span class="no">eax</span><span class="p">,</span> <span class="no">eax</span>
+<span class="nf">xor</span> <span class="no">ebx</span><span class="p">,</span> <span class="no">ebx</span>
+<span class="nf">xor</span> <span class="no">ecx</span><span class="p">,</span> <span class="no">ecx</span>
+<span class="nf">mov</span> <span class="no">ecx</span><span class="p">,</span> <span class="mi">1</span>
+<span class="nf">mov</span> <span class="no">eax</span><span class="p">,</span> <span class="mi">1337</span>
+<span class="nf">mov</span> <span class="no">ebx</span><span class="p">,</span> <span class="mi">42</span>
+<span class="nf">add</span> <span class="no">eax</span><span class="p">,</span> <span class="no">ebx</span>
+<span class="nf">shl</span> <span class="no">ecx</span><span class="p">,</span> <span class="mi">2</span>
+<span class="nf">add</span> <span class="no">eax</span><span class="p">,</span> <span class="no">ecx</span>
+<span class="nf">push</span> <span class="no">eax</span>
+<span class="nf">push</span> <span class="no">ebx</span>
+<span class="nf">pop</span> <span class="no">ecx</span>
+<span class="nf">pop</span> <span class="no">edx</span>
+<span class="nf">lea</span> <span class="no">eax</span><span class="p">,</span> <span class="p">[</span><span class="no">ecx</span><span class="err">+</span><span class="no">eax</span><span class="p">]</span>
+<span class="nf">lea</span> <span class="no">ebx</span><span class="p">,</span> <span class="p">[</span><span class="no">edx</span><span class="err">+</span><span class="no">ebx</span><span class="p">]</span>
+</code></pre></td></tr></tbody></table>
+</div>
+</div><p>What are the final contents of <code>eax</code>, <code>ebx</code>, <code>ecx</code>, and <code>edx</code>? You can do this mentally (i.e. use your brain) or use a tool like <em>Jasmin</em> <a href="http://wwwi10.lrr.in.tum.de/~jasmin/">(link)</a> or even <em>Unicorn Engine</em> if you want to get really fancy ;) <a href="http://www.unicorn-engine.org/docs/tutorial.html">(link)</a></p>
+<h2 id="task-3---understanding-a-c-program">Task 3 - Understanding a C Program</h2>
+<p>Look at the following source code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tbody><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#define MAX_BUFFER_SIZE 1024
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="n">MAX_BUFFER_SIZE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+        <span class="kt">char</span> <span class="o">*</span><span class="n">user_input</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+        <span class="n">user_input</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">MAX_BUFFER_SIZE</span><span class="p">);</span>
+    
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">user_input</span><span class="p">)</span>
+        <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"error allocating memory</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+                <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    
+        <span class="n">memset</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MAX_BUFFER_SIZE</span><span class="p">);</span>
+    
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Enter a string:</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">scanf</span><span class="p">(</span><span class="s">"%1023s"</span><span class="p">,</span> <span class="n">user_input</span><span class="p">))</span>
+        <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"error reading user intput</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+                <span class="n">free</span><span class="p">(</span><span class="n">user_input</span><span class="p">);</span>
+                <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    
+        <span class="n">strncpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">user_input</span><span class="p">,</span> <span class="n">MAX_BUFFER_SIZE</span><span class="p">);</span>
+    
+        <span class="n">puts</span><span class="p">(</span><span class="s">"Your input was:</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    
+        <span class="n">puts</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+    
+        <span class="n">free</span><span class="p">(</span><span class="n">user_input</span><span class="p">);</span>
+    
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></tbody></table>
+</div>
+</div><p>Answer the following questions:</p>
+<ol>
+<li>What does the program do? Go through all the lines and try to understand (really understand) what it does.</li>
+<li>Where in memory (memory segment) does <code>buffer</code> reside?</li>
+<li>Where in memory (memory segment) do <code>user_input</code> and <code>*user_input</code> reside?</li>
+<li>What values does <code>buffer</code> contain after the initialization?</li>
+<li>What’s the difference between <code>strcpy</code> and <code>strncpy</code>? Is <code>strncpy</code> secure for all parameters?</li>
+<li>What’s the difference between <code>user_input</code>, <code>&amp;user_input</code>, and <code>*user_input</code>?</li>
+<li>Look at the following assembler code:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tbody><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="na">...</span>
+<span class="nf">sub</span>    <span class="no">esp</span><span class="p">,</span> <span class="mi">0xc</span>
+<span class="nf">push</span>   <span class="mi">0x400</span>
+<span class="nf">call</span>   <span class="mh">8048430</span> <span class="p">&lt;</span><span class="no">REDACTED@plt</span><span class="p">&gt;</span>
+<span class="nf">add</span>    <span class="no">esp</span><span class="p">,</span> <span class="mi">0x10</span>
+<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x410</span><span class="p">],</span> <span class="no">eax</span>
+<span class="nf">cmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x410</span><span class="p">],</span> <span class="mi">0x0</span>
+<span class="nf">jne</span>    <span class="mh">804862d</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">0x82</span><span class="p">&gt;</span>
+<span class="na">...</span>
+</code></pre></td></tr></tbody></table>
+</div>
+</div><p>To which line(s) in the above source code might this snippet correspond? What is happening there?</p>
+</li>
+</ol>
+<h2 id="task-4---compilation-of-a-c-program">Task 4 - Compilation of a C Program</h2>
+<p>Have a look at the following code in a file called <code>main.c</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tbody><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c">  <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>  
+  <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+  <span class="p">{</span>
+  	<span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
+  	<span class="p">{</span>
+  		<span class="n">puts</span><span class="p">(</span><span class="s">"I need one argument! Exiting..."</span><span class="p">);</span>
+  		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  	<span class="p">}</span>
+  	
+  	<span class="n">printf</span><span class="p">(</span><span class="s">"Hello, %s!</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  	
+  	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></td></tr></tbody></table>
+</div>
+</div><p>Answer the following questions:</p>
+<ol>
+<li>What is the output of <code>gcc -E -P main.c</code>? What can you see? Where is the <code>main()</code> function and what are the other lines?</li>
+<li>Run <code>gcc -S -masm=intel main.c</code> and have a look at the newly created file <code>main.s</code>?
+ Can you make sense of those lines? Is there a semantic connection 
+between the C source code above? Can you find matching lines?</li>
+<li>Run <code>gcc -c main.c</code> and also run <code>file main.o</code> for the newly created file <code>main.o</code>. What does the output tell you?</li>
+<li>Run <code>strings main.o</code>, can you find anything related to the C source code?</li>
+<li>Run <code>xxd main.o</code>, what do you see? What do the different columns mean? Why are there sometimes <code>.</code> (dots) in the rightmost column?</li>
+<li>Run <code>nm main.o</code>, what do you see and more concrete what does <code>U</code> mean?</li>
+</ol>
+<p>Have a look at the following code of a file called <code>lib_hello.c</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tbody><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c">  <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>  
+  <span class="kt">void</span> <span class="nf">say_hello</span><span class="p">()</span>
+  <span class="p">{</span>
+  	<span class="n">puts</span><span class="p">(</span><span class="s">"Hello, PABE student! Welcome to the lecture :)"</span><span class="p">);</span>
+  
+  	<span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></td></tr></tbody></table>
+</div>
+</div><p>and this code called <code>use_lib.c</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tbody><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c">  <span class="k">extern</span> <span class="kt">void</span> <span class="nf">say_hello</span><span class="p">();</span>
+  
+  <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+  <span class="p">{</span>
+  	<span class="n">say_hello</span><span class="p">();</span>
+  
+  	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></td></tr></tbody></table>
+</div>
+</div><p>Answer the following questions:</p>
+<ol start="7">
+<li>Compile the code with <code>gcc -shared -fPIC lib_hello.c -o libhello.so</code> and run <code>file libhello.so</code>. What is the output and how is it different to the output of <code>file main.o</code>?</li>
+<li>Run <code>gcc -L$(pwd) -o use_lib use_lib.c -lhello</code> and describe what the command does. What is the result? (if you want to run the final binary execute <code>LD_LIBRARY_PATH=$(pwd) ./use_lib</code>)</li>
+<li>In the previous <code>gcc</code> command… what happens if you leave the <code>-L$(pwd)</code> flag and why? (maybe <code>ld -lhello --verbose</code> will help you)</li>
+</ol>
+<h2 id="task-5---bug-hunting">Task 5 - Bug Hunting</h2>
+<p>Download the following  (not so well written) <a href="Sheet%200-Dateien/roulette_public.c">source code</a> and try to win the game! The goal is to make the program print out the flag
+(<code>#define FLAG "FLAG{REDACTED}"</code>). Connect to <code>pabe.seclab-bonn.de</code> on port <code>11338</code> and get the flag! Hint: Maybe your name has an impact on the fortune…</p>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+</div>
+
+    <div class="date"> 3 Oct 2020 </div>
+  </div>
+
+</footer>
+
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div class="social-link">
+  <a href="https://pabe.seclab-bonn.de/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright"> Copyright (c) 2018-2020 Fraunhofer FKIE, all rights reserved. </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+
+
+
+</body></html>
